@@ -8,23 +8,52 @@
 
 import UIKit
 
+
 class frontPageViewController: UIPageViewController {
+    
+    
+   lazy var subViewcontrolers: [UIViewController] = {
+        var viewcontrols = [
+            UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "itemViewController") as! itemViewController,
+            UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "articleViewController") as! articleViewController
+    ]
+    
+    return viewcontrols
+    }()
+    
+    
+    
+//    func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
+//        let current_index:Int = subViewcontrolers.firstIndex(of: viewController) ?? 0
+//        if(current_index>0){
+//            return subViewcontrolers[current_index-1]
+//        }
+//        return nil
+//    }
+//
+//    func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
+//        let currenrt_index:Int = subViewcontrolers.firstIndex(of: viewController) ?? 0
+//        if(currenrt_index < subViewcontrolers.count-1){
+//            return subViewcontrolers[currenrt_index+1]
+//        }
+//        return nil
+//    }
+    
+//
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+//        self.delegate=self
+//        self.dataSource=self
+//        setViewControllers([subViewcontrolers[0]], direction: .forward, animated: true, completion: nil)
+       
         // Do any additional setup after loading the view.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+    
+    
+   
 }
+//,UIPageViewControllerDelegate,UIPageViewControllerDataSource

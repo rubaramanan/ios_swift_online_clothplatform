@@ -9,10 +9,14 @@
 import UIKit
 
 class article1TableViewCell: UITableViewCell {
-
+    
+    
+   
+    @IBOutlet weak var collectionview: UICollectionView!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+            //as! UICollectionViewDataSource
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -20,5 +24,10 @@ class article1TableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
+     
+    
+    
+    
 
 }

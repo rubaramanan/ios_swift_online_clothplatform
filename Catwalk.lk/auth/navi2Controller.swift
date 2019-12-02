@@ -7,24 +7,44 @@
 //
 
 import UIKit
+import PolioPager
 
-class navi2Controller: UINavigationController {
+class navi2Controller: UINavigationController,PolioPagerSearchTabDelegate,UITextFieldDelegate {
+    var searchBar: UIView!
+    
+    var searchTextField: UITextField!
+    
+    var cancelButton: UIButton!
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        searchTextField.delegate = self as! UITextFieldDelegate
         // Do any additional setup after loading the view.
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+           print("done press")
+           goTonext(text: textField.text!)
+//            self.view.endEditing(true)
+//           return false
+        textField.resignFirstResponder()
+        return true;
+       }
+       
+       func goTonext(text: String){
+           let  main = UIStoryboard(name: "Main", bundle: Bundle.main)
+           let search = main.instantiateViewController(withIdentifier: "searchDisplayViewController") as! searchDisplayViewController
+           
+           print(self)
+           self.pushViewController(search, animated: true)
+        self.dismiss(animated: true, completion: nil)
+           search.searchKey = text
+          // self.showDetailViewController(search, sender: self)
+           //navigationController?.pushViewController(search, animated: true)
+           
+       }
 
 }

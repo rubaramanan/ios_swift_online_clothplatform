@@ -7,24 +7,38 @@
 //
 
 import UIKit
+import WebKit
+import ARKit
+import Firebase
+import FirebaseFirestore
 
-class htmlarticleViewController: UIViewController {
+class htmlarticleViewController: UIViewController, WKUIDelegate, WKNavigationDelegate {
 
+    @IBOutlet weak var webView: WKWebView!
+    var htmlString = String()
+    var db: Firestore!
+       override func loadView() {
+           let webConfiguration = WKWebViewConfiguration()
+           webView = WKWebView(frame: .zero, configuration: webConfiguration)
+           webView.uiDelegate = self
+           webView.navigationDelegate = self
+           view = webView
+        //self.view.addSubview(self.contentview!)
+       }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        webView.loadHTMLString( htmlString as! String, baseURL: nil)
 
-        // Do any additional setup after loading the view.
+       
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+     func webView(_ webView: WKWebView, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
+           if let serverTrust = challenge.protectionSpace.serverTrust {
+               completionHandler(.useCredential, URLCredential(trust: serverTrust))
+           }
+       }
 
 }

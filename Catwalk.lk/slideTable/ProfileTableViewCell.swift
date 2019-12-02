@@ -9,7 +9,11 @@
 import UIKit
 
 class ProfileTableViewCell: UITableViewCell {
-
+    @IBOutlet weak var profilePic: UIImageView!
+    
+    @IBOutlet weak var email: UILabel!
+    @IBOutlet weak var username: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

@@ -10,6 +10,7 @@ import UIKit
 
 class itemFromFirestoreTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var collectionview1: UICollectionView!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

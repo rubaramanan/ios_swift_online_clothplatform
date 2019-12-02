@@ -8,8 +8,17 @@
 
 import UIKit
 
+protocol signout{
+    func out()
+}
 class SignOutTableViewCell: UITableViewCell {
 
+    
+    
+    
+    @IBOutlet weak var signout: UIButton!
+    var delegate: signout?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -20,5 +29,12 @@ class SignOutTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-
+    
+    @IBAction func logout(_ sender: Any) {
+        delegate?.out()
+        
+      
+    }
+    
+    
 }

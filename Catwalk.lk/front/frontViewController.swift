@@ -8,23 +8,63 @@
 
 import UIKit
 
-class frontViewController: UIViewController {
+import DTOverlayController
+import PolioPager
 
+
+
+class frontViewController: PolioPagerViewController {
+    
+    @IBOutlet weak var menu: UIBarButtonItem!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+      navigationItem.title = "Catwalk.lk"
+        
     }
     
+    
+    
+    
+    @IBAction func tapMenu(_ sender: Any) {
+        
+         
+        let smallVC = storyboard?.instantiateViewController(identifier: "slideUpTableViewController")
+        let navi = UINavigationController(rootViewController: smallVC!)
+        let overlayController = DTOverlayController(viewController: navi, overlayHeight: .dynamic(0.8), dismissableProgress: 0.4)
+        //overlayController.dismissableProgress = 0.4
+        overlayController.isPanGestureEnabled = true
+        overlayController.overlayViewCornerRadius = 10
+      //  self.view.addSubview(smallVC!.view)
+//        overlayController.navigationController = UINavigationController(rootViewController: "slideUpTableViewController") as slideUpTableViewController
+        
+        present(overlayController, animated: true, completion: nil)
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+       
+//        overlayController.overlayHeight = .dynamic(0.5) // 80% height of parent controller
+//        overlayController.overlayHeight = .static(300) // fixed 300-point height
+//        overlayController.overlayHeight = .inset(30) // fixed 50-point inset from top
+        
     }
-    */
+    
+    
+    
+    override func tabItems()-> [TabItem] {
+        return [TabItem(title: "New Trends"),TabItem(title: "Recent Articles")]
+    }
 
+    override func viewControllers()-> [UIViewController]
+    {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+
+        let viewController = storyboard.instantiateViewController(withIdentifier: "navi2Controller") 
+        let viewController1 = storyboard.instantiateViewController(withIdentifier: "itemViewController") 
+        let viewController2 = storyboard.instantiateViewController(withIdentifier: "naviViewController")
+        
+
+        return [viewController, viewController1, viewController2]
+    }
+
+    
+    
 }

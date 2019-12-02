@@ -7,24 +7,24 @@
 //
 
 import UIKit
+import PolioPager
+import DTOverlayController
 
-class searchViewController: UIViewController {
-
+class searchViewController: UIViewController,PolioPagerSearchTabDelegate, UITextFieldDelegate,UISearchTextFieldDelegate{
+    var searchBar: UIView!
+    
+    var searchTextField: UITextField!
+    
+    var cancelButton: UIButton!
+    
+   
+    @IBOutlet weak var label: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+     //   searchTextField.delegate = self as! UITextFieldDelegate
     }
+
+   
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+    
 }

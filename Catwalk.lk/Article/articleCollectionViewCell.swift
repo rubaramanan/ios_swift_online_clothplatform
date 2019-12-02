@@ -10,4 +10,16 @@ import UIKit
 
 class articleCollectionViewCell: UICollectionViewCell {
     
+    @IBOutlet weak var articleImage: UIImageView!
+    @IBOutlet weak var title: UILabel!
+    @IBOutlet weak var content: UILabel!
+    @IBOutlet weak var dateTime: UILabel!
+    
+    var image : UIImage! {
+        
+       didSet{
+            self.articleImage.image = image
+             //imageView.layer.cornerRadius = 12
+        }
+    }
 }
